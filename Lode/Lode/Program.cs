@@ -11,6 +11,7 @@ namespace Lode
         static void Main(string[] args)
         {
             Lod boat1 = new Lod();
+            Board deska = new Board();
 
             boat1.changeDirection();
             string pozice = boat1.getDirection();
