@@ -10,11 +10,14 @@ namespace Lode
     {
         static void Main(string[] args)
         {
-            Lod boat1 = new Lod();
+            Lod boat = new Lod();
             Board deska = new Board();
+            List<Point> lod = boat.markBoat(deska);
+            deska.updateBoard(lod);
+            deska.printBoard();
 
-            boat1.changeDirection();
-            string pozice = boat1.getDirection();
+
+            string pozice = boat.getDirection();
             Console.WriteLine(pozice);
         }
     }
