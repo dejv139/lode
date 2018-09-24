@@ -15,17 +15,13 @@ namespace Lode
         private int width = 3;
         private int height = 1;
 
-        public Lod()
+        public Lod(int x, int y)
         {
-            for (int i = 0; i < width; i++)
-            {
-                squares.Add(new Point
-                {
-                    X = i,
-                    Y = 0
-                });
-
-            }
+            squares.Add(new Point
+            { 
+                    X = x,
+                    Y = y
+            });
         }
 
         public List<Point> markBoat(Board gameBoard)
@@ -52,9 +48,16 @@ namespace Lode
                     }
                 }
             }
-
-
             return boardSquares;
+        }
+
+        public void getPos()
+        {
+            foreach(var square in squares)
+            {
+                Console.WriteLine("X:" + square.X + "\n");
+                Console.WriteLine("Y:" + square.Y + "\n");
+            }
         }
 
 

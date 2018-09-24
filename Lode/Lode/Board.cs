@@ -44,7 +44,7 @@ namespace Lode
 			{
 				if (board[p-1].Occ == 1)
 				{
-					Console.BackgroundColor = ConsoleColor.DarkGreen;
+					Console.BackgroundColor = ConsoleColor.White;
 				}
 
 				Console.Write("|__|");
