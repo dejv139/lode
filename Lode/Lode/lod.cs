@@ -10,18 +10,226 @@ namespace Lode
     {
         private List<Point> squares = new List<Point>();
         private List<Point> boardSquares = new List<Point>();
-        private List<Point> immune = new List<Point>();
-        private bool direction = true; // true = horizontální, false = vertikální
-        private int width = 3;
-        private int height = 1;
 
-        public Lod(int x, int y)
+
+        public Lod(int x, int y, int direction, int boatType)
         {
-            squares.Add(new Point
-            { 
-                    X = x,
-                    Y = y
-            });
+
+            switch (boatType)
+            {
+                case 1:
+                    squares.Add(new Point
+                    {
+                        X = x,
+                        Y = y
+                    });
+                    break;
+                case 2:
+                    squares.Add(new Point
+                    {
+                        X = x,
+                        Y = y
+                    });
+                    if (direction == 0)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x - 1,
+                            Y = y
+                        });
+                    }
+                    else if (direction == 3)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y - 1
+                        });
+                    }
+                    else if (direction == 1)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y + 1
+                        });
+                    }
+                    else if (direction == 2)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x + 1,
+                            Y = y
+                        });
+                    }
+                    break;
+                case 3:
+                    squares.Add(new Point
+                    {
+                        X = x,
+                        Y = y
+                    });
+                    if (direction == 0)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x+1,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x-1,
+                            Y = y
+                        });
+                    }
+                    else
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y + 1
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y - 1
+                        });
+                    }
+                    break;
+                case 4:
+                    squares.Add(new Point
+                    {
+                        X = x,
+                        Y = y
+                    });
+                    if (direction == 0)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x - 1,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x - 2,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x + 1,
+                            Y = y
+                        });
+                    }
+                    else if (direction == 1)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y + 1
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y + 2
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y - 1
+                        });
+                    }
+                    else if (direction == 2)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x + 1,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x + 2,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x - 1,
+                            Y = y
+                        });
+                    }
+                    else if (direction == 3)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y - 1
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y - 2
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y + 1
+                        });
+                    }
+                    break;
+                case 5:
+                    squares.Add(new Point
+                    {
+                        X = x,
+                        Y = y
+                    });
+                    if (direction == 0)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x + 1,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x + 2,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x - 1,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x - 2,
+                            Y = y
+                        });
+                    }
+                    else
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y + 1
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y + 2
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y - 1
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y - 2
+                        });
+                    }
+                    break;
+
+            }
         }
 
         public List<Point> markBoat(Board gameBoard)
@@ -36,16 +244,8 @@ namespace Lode
                     {
                         bSquare.Occ = 1;
                         bSquare.occBy = this;
-                        immune.Add(bSquare);
                     }
-                    else
-                    {
-                        if (bSquare.occBy == this && immune.Contains(bSquare) == false)
-                        {
-                            bSquare.Occ = 0;
-                            bSquare.occBy = null;
-                        }
-                    }
+
                 }
             }
             return boardSquares;
@@ -59,31 +259,5 @@ namespace Lode
                 Console.WriteLine("Y:" + square.Y + "\n");
             }
         }
-
-
-        public void changeDirection()
-        {
-            if (direction == true)
-            {
-                direction = false;
-            }
-            else
-            {
-                direction = true;
-            }
-        }
-
-        public string getDirection()
-        {
-            if (direction == true)
-            {
-                return "horizontal";
-            }
-            else
-            {
-                return "vertical";
-            }
-        }
     }
 }
-

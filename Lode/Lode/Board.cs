@@ -47,9 +47,9 @@ namespace Lode
 					Console.BackgroundColor = ConsoleColor.White;
 				}
 
-				Console.Write("|__|");
+				Console.Write("_|");
 				Console.ResetColor();
-				Console.Write("");
+				Console.Write("  ");
 
 				if (p % Ver == 0)
 				{
