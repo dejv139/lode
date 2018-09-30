@@ -21,7 +21,8 @@ namespace Lode
                     squares.Add(new Point
                     {
                         X = x,
-                        Y = y
+                        Y = y,
+                        Occ = 1
                     });
                     break;
                 case 2:
@@ -228,6 +229,114 @@ namespace Lode
                         });
                     }
                     break;
+                case 6:
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x + 1,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x - 1,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y + 1
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y - 1
+                        });
+
+                        break;
+                    }
+                case 7:
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y
+                        });
+                        if(direction == 0)
+                        {
+                            squares.Add(new Point
+                            {
+                                X = x,
+                                Y = y + 1
+                            });
+                            squares.Add(new Point
+                            {
+                                X = x,
+                                Y = y - 1
+                            });
+
+                            squares.Add(new Point
+                            {
+                                X = x + 1,
+                                Y = y + 1
+                            });
+                            squares.Add(new Point
+                            {
+                                X = x - 1,
+                                Y = y + 1
+                            });
+                            squares.Add(new Point
+                            {
+                                X = x + 1,
+                                Y = y - 1
+                            });
+                            squares.Add(new Point
+                            {
+                                X = x - 1,
+                                Y = y - 1
+                            });
+                        }
+                        else
+                        {
+                            squares.Add(new Point
+                            {
+                                X = x + 1,
+                                Y = y
+                            });
+                            squares.Add(new Point
+                            {
+                                X = x - 1,
+                                Y = y
+                            });
+
+                            squares.Add(new Point
+                            {
+                                X = x + 1,
+                                Y = y + 1
+                            });
+                            squares.Add(new Point
+                            {
+                                X = x - 1,
+                                Y = y + 1
+                            });
+                            squares.Add(new Point
+                            {
+                                X = x + 1,
+                                Y = y - 1
+                            });
+                            squares.Add(new Point
+                            {
+                                X = x - 1,
+                                Y = y - 1
+                            });
+                        }
+                       
+                        break;
+                    }
 
             }
         }
@@ -235,21 +344,30 @@ namespace Lode
         public List<Point> markBoat(Board gameBoard)
         {
             List<Point> boardSquares = gameBoard.vypisBoard();
+            List<Point> test = new List<Point>();
 
             foreach (var square in squares)
             {
                 foreach (var bSquare in boardSquares)
                 {
-                    if (square.getX() == bSquare.getX() && square.getY() == bSquare.getY())
-                    {
-                        bSquare.Occ = 1;
-                        bSquare.occBy = this;
-                    }
 
+                        if (square.getX() == bSquare.getX() && square.getY() == bSquare.getY())
+                        {
+                            if (bSquare.Occ != 1)
+                            {
+                                bSquare.Occ = 1;
+                                bSquare.occBy = this;
+                            }
+                            else
+                            {
+                                return boardSquares;
+                            }
+                        }
                 }
             }
             return boardSquares;
         }
+
 
         public void getPos()
         {
@@ -257,6 +375,7 @@ namespace Lode
             {
                 Console.WriteLine("X:" + square.X + "\n");
                 Console.WriteLine("Y:" + square.Y + "\n");
+                Console.WriteLine("Occupied:" + square.Occ + "\n");
             }
         }
     }

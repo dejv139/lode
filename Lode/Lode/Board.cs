@@ -45,9 +45,12 @@ namespace Lode
 				if (board[p-1].Occ == 1)
 				{
 					Console.BackgroundColor = ConsoleColor.White;
-				}
+				}else if (board[p - 1].Occ == 2)
+                {
+                    board[p - 1].Occ = 0;
+                }
 
-				Console.Write("_|");
+                    Console.Write("_|");
 				Console.ResetColor();
 				Console.Write("  ");
 
