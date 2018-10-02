@@ -337,6 +337,112 @@ namespace Lode
                        
                         break;
                     }
+                case 8:
+                    squares.Add(new Point
+                    {
+                        X = x,
+                        Y = y
+                    });
+                    if(direction == 0 || direction == 2)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y + 1
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y + 2
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y - 1
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x,
+                            Y = y - 2
+                        });
+
+                    }else if(direction == 1 || direction == 3)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x + 1,
+                            Y = y 
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x + 2,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x - 1,
+                            Y = y
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x - 2,
+                            Y = y
+                        });
+                    }
+                    if (direction == 0)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x - 1,
+                            Y = y + 1
+                        });
+
+                        squares.Add(new Point
+                        {
+                            X = x - 1,
+                            Y = y - 1
+                        });
+                    }else if(direction == 1)
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x - 1,
+                            Y = y + 1
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x + 1,
+                            Y = y + 1
+                        });
+                    }else if (direction == 2) {
+                        squares.Add(new Point
+                        {
+                            X = x + 1,
+                            Y = y + 1
+                        });
+
+                        squares.Add(new Point
+                        {
+                            X = x + 1,
+                            Y = y - 1
+                        });
+
+                    }
+                    else
+                    {
+                        squares.Add(new Point
+                        {
+                            X = x - 1,
+                            Y = y - 1
+                        });
+                        squares.Add(new Point
+                        {
+                            X = x + 1,
+                            Y = y - 1
+                        });
+                    }
+                    break;
+
 
             }
         }
@@ -344,7 +450,6 @@ namespace Lode
         public List<Point> markBoat(Board gameBoard)
         {
             List<Point> boardSquares = gameBoard.vypisBoard();
-            List<Point> test = new List<Point>();
 
             foreach (var square in squares)
             {

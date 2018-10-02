@@ -29,16 +29,5 @@ namespace Lode
             return Occ;
         }
 
-        public bool isOccupied(List<Point> BoatSquare, List<Point> board)
-        {
-            foreach (var square in BoatSquare)
-            {
-                if(square.getOccupied() == 1)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
     }
 }
